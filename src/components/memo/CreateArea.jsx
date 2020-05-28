@@ -50,15 +50,13 @@ const InputArea = ({ updateNotes }) => {
           value={note.content}
           rows={isExpanded ? 3 : 1}
         />
-        <Zoom in={isExpanded}>
-          <Fab
-            type='submit'
-            onClick={e => {
-              onClick(e)
-            }}>
-            <AddIcon />
-          </Fab>
-        </Zoom>
+        <Fab
+          type='submit'
+          onClick={e => {
+            onClick(e)
+          }}>
+          <AddIcon />
+        </Fab>
       </form>
     </div>
   )

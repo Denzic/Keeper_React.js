@@ -1,36 +1,24 @@
-import React, { useState } from "react"
-import InputArea from "./CreateArea"
-import Note from "./Note"
-import Footer from "./Footer"
-import Header from "./Header"
+import React from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import Footer from "./utility/Footer"
+import Header from "./utility/Header"
+import Memo from "./memo/Memo"
+import Menu from "./menu/Menu"
+import Details from "./menu/Details"
 
 const App = () => {
-  const [notes, setNotes] = useState([])
-
-  const updateNotes = (newId, note, e) => {
-    note.id = newId
-    setNotes(prev => {
-      return [...prev, note]
-    })
-  }
-
-  const deleteNote = currentId => {
-    setNotes(prev => {
-      return prev.filter(note => {
-        return note.id !== currentId
-      })
-    })
-  }
-
   return (
-    <div>
-      <Header />
-      <InputArea updateNotes={updateNotes} />
-      {notes.map(note => (
-        <Note key={note.id} note={note} deleteNote={deleteNote} />
-      ))}
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <Switch>
+          <Route path='/menu' exact component={Menu} />
+          <Route path='/' exact component={Memo} />
+          <Route path='/menu/:id' component={Details} />
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   )
 }
 
