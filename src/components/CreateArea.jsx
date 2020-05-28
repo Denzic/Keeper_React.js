@@ -23,6 +23,14 @@ const InputArea = ({ updateNotes }) => {
     })
   }
 
+  const onClick = e => {
+    setNote({ title: "", content: "" })
+    if (note.title !== "" && note.content !== "") {
+      updateNotes(Math.random(), note, e)
+    }
+    e.preventDefault()
+  }
+
   return (
     <div>
       <form className='create-note'>
@@ -46,11 +54,7 @@ const InputArea = ({ updateNotes }) => {
           <Fab
             type='submit'
             onClick={e => {
-              setNote({ title: "", content: "" })
-              if (note.title !== "" && note.content !== "") {
-                updateNotes(Math.random(), note, e)
-              }
-              e.preventDefault()
+              onClick(e)
             }}>
             <AddIcon />
           </Fab>
